@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <div class="left"><a href=""><img src="assets/kushan-logo.png"></a></div>
+        <div class="right">
+            <ul>
+                <li><a href="#home-section">Home</a></li>
+                <li><a href="#about-section">About</a></li>
+                <li><a href="#Services-section">Services</a></li>
+                <li><a href="#Projects-section">Projects</a></li>
+                <li><a href="#Contact-section">Contact Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home-section">
+            <div class="left-content">
+                <h1>Hi,My name is <span>Kushan</span>
+                    <br>and i am a passionate <br> <span id="element"></span>
+                </h1>
+                <a href="assets/cv.pdf" download target="_blank"><button>Download Resume</button></a>
+                <a href="https://github.com/KushanKumar" target="_blank"><button>Visit Github</button></a>
+            </div>
+            <div class="right-content">
+                <img src="assets/programming-coding.png" alt="">
+            </div>
+        </section>
+
+        <!-- ***************about****************** -->
+        <section id="about-section">
+            <div class="image-section">
+                <img src="assets/kushan-image.jpg" alt="">
+            </div>
+            <div class="aboutcontents">
+                <h2>About</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti debitis tenetur suscipit in sed ut
+                    incidunt laboriosam iste nisi deserunt distinctio minus quaerat tempora odit veniam id, quidem,
+                    asperiores nihil recusandae voluptate alias magni, eligendi saepe. Quos cumque laboriosam ipsum
+                    provident reiciendis. Sunt?</p>
+
+                <div class="tab-tittle">
+                    <ul>
+                        <li class="tab-links active-link" onclick="opentab('education')">Education</li>
+                        <li class="tab-links" onclick="opentab('skill')">Skills</li>
+                        <!-- <li class="tab-links"></li> -->
+                    </ul>
+                </div>
+                <div class="tab-contents active-tab" id="education">
+                    <ul>
+                        <li><span>Ajay Kumar Garg College</span><br>MCA(2022-2024)</li>
+                        <li><span>L.N Mishra College</span><br>BCA(2019-2022)</li>
+                        <li><span>Indraprastha public school</span><br>class 12</li>
+                        <li><span>Dav public school</span><br>class 10</li>
+                    </ul>
+                </div>
+
+                <div class="tab-contents" id="skill">
+                    <ul>
+                        <li><span>Java</span><br>Intermediate</li>
+                        <li><span>DBMS</span><br>Intermediate</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- **************Services************* -->
+        <section id="Services-section">
+            <h2>My Services</h2>
+            <div class="service-list">
+                <div class="card">
+                    <!-- <img src="assets/webCard.png" alt=""> -->
+                    <i class="fas fa-code"></i>
+                    <h3>Web Developer</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium placeat minima.</p>
+                    <a href="#">Learn More.</a>
+                </div>
+                <div class="card">
+                    <i class="fas fa-code"></i>
+                    <h3>Web Developer</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium placeat minima.</p>
+                    <a href="#">Learn More.</a>
+                </div>
+                <div class="card">
+                    <i class="fas fa-code"></i>
+                    <h3>Web Developer</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium placeat minima.</p>
+                    <a href="#">Learn More.</a>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="Projects-section"></section>
+
+        <!-- ****************Contact******** -->
+        <section id="Contact-section">
+            <div class="left-contact">
+                <h4>Contact Me</h4>
+                <p><i class="fa-solid fa-inbox"></i> Kushankumar2000@gmail.com</p>
+                <div class="socialLinks">
+                    <a href="https://www.linkedin.com/in/kushan-kumar-5765651b8"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+                    <a href=""><i class="fa-brands fa-instagram fa-lg"></i></a>
+                    <a href="https://github.com/KushanKumar"><i class="fa-brands fa-github fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="right-contact">
+                <form name="submit-to-google-sheet" action="">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="example@mail.com" required>
+                    <textarea name="description" placeholder="Message" rows="6"></textarea>
+                    <button id="submitBtn">Submit</button>
+
+                    <span id="msg"></span>
+                </form>
+            </div>
+        </section>
+    </main>
+
+
+
+
+
+
+    <!-- ******************script****************** -->
+    <script src="script.js"></script>
+    <!-- typed js -->
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script>
+        var typed = new Typed('#element', {
+            strings: ['Web developer', 'Cloud engineer', 'tech enthusiast'],
+            typeSpeed: 50,
+        });
+    </script>
+
+    <!-- form to sheet data filling -->
+         
+      <script>
+        const scriptURL = '<url>'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById('msg')  // my element in span
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                console.log('Success!', response);
+                msg.innerHTML = 'Message sent sucessfully'
+                msg.style.color = '#5eff40'
+                setTimeout(function(){
+                    msg.innerHTML = ''
+                },5000)
+                form.reset()
+            })
+            .catch(error => {
+                console.error('Error!', error.message)
+                msg.innerHTML = "Message can't sent"
+                msg.style.color = 'red'
+            })
+        })
+      </script>
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/d6e8b920f5.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
